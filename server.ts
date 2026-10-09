@@ -120,7 +120,12 @@ const server = Bun.serve({
       if (format === "mp3") {
         args.push("-x", "--audio-format", "mp3", "--audio-quality", "0");
       } else {
-        args.push("--merge-output-format", "mp4");
+        args.push(
+          "-f",
+          "bv*[protocol^=http]+ba[protocol^=http]/b[protocol^=http]/bv*+ba/b",
+          "--merge-output-format",
+          "mp4"
+        );
       }
 
       args.push("-o", tempPath, targetUrl);
