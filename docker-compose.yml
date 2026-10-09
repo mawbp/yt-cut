@@ -1,0 +1,18 @@
+services:
+  yt-cutter:
+    build: .
+    image: yt-cutter:latest
+    container_name: yt-cutter
+    restart: unless-stopped
+    ports:
+      - "3333:3333"
+    labels:
+      - dockflare.enable=true
+      - dockflare.hostname=ytcut.farewell.my.id
+      - dockflare.service=http://yt-cutter:3333
+    networks:
+      - cloudflare-net
+
+networks:
+  cloudflare-net:
+    external: true
