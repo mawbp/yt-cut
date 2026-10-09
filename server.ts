@@ -113,17 +113,14 @@ const server = Bun.serve({
         "--download-sections",
         sectionArg,
         "--force-keyframes-at-cuts",
+        "--js-runtimes",
+        "bun:bun",
       ];
 
       if (format === "mp3") {
         args.push("-x", "--audio-format", "mp3", "--audio-quality", "0");
       } else {
-        args.push(
-          "-f",
-          "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]/bv*+ba/b",
-          "--merge-output-format",
-          "mp4"
-        );
+        args.push("--merge-output-format", "mp4");
       }
 
       args.push("-o", tempPath, targetUrl);
